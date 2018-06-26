@@ -1,0 +1,27 @@
+{
+  "name": "cruise-ships",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "jest": "^23.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-mcr-codes": "^1.0.1",
+    "eslint-plugin-import": "^2.13.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/elenastagg/cruise-ships.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elenastagg/cruise-ships/issues"
+  },
+  "homepage": "https://github.com/elenastagg/cruise-ships#readme"
+}
