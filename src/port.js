@@ -1,7 +1,14 @@
-function Port(name) {
+function Port(name, ships) {
   this.name = name;
+  this.ships = ships;
 }
 
-module.exports = {
-  Port,
+Port.prototype.addShip = function addShip(newShip) {
+  this.ships.push(newShip);
 };
+
+Port.prototype.removeShip = function removeShip(leavingShip) {
+  this.ships = this.ships.filter(ship => ship !== leavingShip);
+};
+
+module.exports = Port;
