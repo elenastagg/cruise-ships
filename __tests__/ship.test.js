@@ -6,10 +6,12 @@ let ship;
 let southampton;
 let itinerary;
 let calais;
+let ships;
 
 beforeEach(() => {
-  southampton = new Port('Southampton');
-  calais = new Port('Calais');
+  ships = ['HMS Princess Ellie', 'Queen Mary 3'];
+  southampton = new Port('Southampton', ships);
+  calais = new Port('Calais', ships);
   itinerary = new Itinerary([southampton, calais]);
   ship = new Ship(itinerary);
 });
@@ -21,15 +23,19 @@ describe('Ship', () => {
   it('has a starting port', () => {
     expect(ship.currentPort).toBe(southampton);
   });
-  // it('gets added to the port on instantiation', () => {
-  //   expect(calais.ships).toContain(ship);
-  // });
+  it('gets added to the port on instantiation', () => {
+    expect(calais.ships).toContain(ship);
+  });
 });
 
 describe('setSail', () => {
   it('returns a falsey value when calling on the setSail function', () => {
     ship.setSail();
     expect(ship.currentPort).toBeNull();
+  });
+  it('no longer has the ship logged at the port', () => {
+    ship.setSail();
+    expect(southampton.ships).not.toContain(ship);
   });
   it('sets the previous port', () => {
     ship.setSail();
@@ -49,5 +55,6 @@ describe('dock', () => {
     ship.setSail();
     ship.dock();
     expect(ship.currentPort).toBe(calais);
+    expect(calais.ships).toContain(ship);
   });
 });
