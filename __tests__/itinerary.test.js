@@ -1,13 +1,11 @@
 const Itinerary = require('../src/itinerary.js');
 
-const Port = require('../src/port.js');
-
 let itinerary;
-const southampton = new Port('Southampton');
-const calais = new Port('Calais');
+const port1 = jest.fn();
+const port2 = jest.fn();
 
 beforeEach(() => {
-  itinerary = new Itinerary([southampton, calais]);
+  itinerary = new Itinerary([port1, port2]);
 });
 
 describe('Itinerary', () => {
@@ -15,6 +13,6 @@ describe('Itinerary', () => {
     expect(itinerary).toBeInstanceOf(Object);
   });
   it('has a list of ports', () => {
-    expect(itinerary.ports).toEqual([southampton, calais]);
+    expect(itinerary.ports).toEqual([port1, port2]);
   });
 });

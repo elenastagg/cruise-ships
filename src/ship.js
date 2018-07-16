@@ -19,6 +19,20 @@ Ship.prototype.setSail = function setSail() {
 Ship.prototype.dock = function dock() {
   const previousPortIndex = this.itinerary.ports.indexOf(this.previousPort);
   this.currentPort = this.itinerary.ports[previousPortIndex + 1];
+  this.currentPort.addShip(this);
 };
 
 module.exports = Ship;
+
+// Note many of the changes below will happen in the beforeEach function callback.
+// You will need to use the matcher toHaveBeenCalledWith.
+
+// In can set sail you will need to remove the assertion on port.ships and
+// instead assert that ship.setSail calls port.removeShip (where port is a stub,
+//  and removeShip is a method on that stub).
+// In gets added to port on instantiation you will need to remove the assertion on
+//  port.ships and instead assert that port.addShip has been called (again,
+//   addShip will be a spy on a port stub).
+// In can dock at a different port you will need to remove the assertion on
+// calais.ships and instead assert that calais.addShip has been called with ship
+// (again, addShip will be a spy on a port stub).
