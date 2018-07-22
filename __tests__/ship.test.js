@@ -1,5 +1,4 @@
 const Ship = require('../src/ship.js');
-const Itinerary = require('../src/itinerary.js');
 
 let ship;
 let port1;
@@ -7,9 +6,16 @@ let itinerary;
 let port2;
 
 beforeEach(() => {
-  port1 = { addShip: jest.fn(), removeShip: jest.fn() };
-  port2 = { addShip: jest.fn() };
-  itinerary = new Itinerary([port1, port2]);
+  port1 = {
+    addShip: jest.fn(),
+    removeShip: jest.fn(),
+  };
+  port2 = {
+    addShip: jest.fn(),
+  };
+  itinerary = {
+    ports: [port1, port2],
+  };
   ship = new Ship(itinerary);
 });
 
@@ -53,5 +59,5 @@ describe('dock', () => {
     ship.dock();
     expect(ship.currentPort).toBe(port2);
     expect(port2.addShip).toHaveBeenCalledWith(ship);
-  });
+  }); //says in walkthrough to add a stub here but it already works without??
 });
